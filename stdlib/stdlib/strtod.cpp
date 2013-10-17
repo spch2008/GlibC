@@ -36,19 +36,19 @@ double strtod(const char *nptr, char **endptr)
 	int exponent = 0;
 	int got_dot   = 0;
 	double result = 0;
-	for(char c = *s; *s != '\0'; ++s)
+	for(char c = *s; c != '\0'; c = *++s)
 	{
-		if( isdigit(*s) )
+		if( isdigit(c) )
 		{
 			if(result > DBL_MAX * 0.1)
 				exponent++;
 			else
-				result = result * 10.0 + (*s - '0');
+				result = result * 10.0 + (c - '0');
 
 			if(got_dot)
 				exponent--;
 		}
-		else if(!got_dot && *s == '.')
+		else if(!got_dot && c == '.')
 			got_dot = 1;
 		else
 			break;
