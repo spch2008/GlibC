@@ -5,6 +5,9 @@ const int INT_MAX = 2147483647;
 
 int atoi(const char *nptr)
 {
+	if(nptr == 0)
+		goto noconv;
+
 	const char *s = nptr;
 	//skip white  space
 	while(isspace(*s))
