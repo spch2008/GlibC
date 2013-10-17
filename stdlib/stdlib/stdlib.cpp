@@ -7,7 +7,7 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	cout << atoi("-123") << endl;
+	cout << strtod("-334.78", NULL) << endl;
 
 	system("pause");
 	return 0;
