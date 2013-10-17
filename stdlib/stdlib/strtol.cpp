@@ -1,8 +1,17 @@
 #include <cctype>
 #include <climits>
 #define NULL 0
+
+#ifndef UNSIGNED
 #define UNSIGNED 0
-long int strtol(const char *nptr, char **endptr, int base)
+#endif
+
+#if UNSIGNED
+unsigned long int
+#else
+long int
+#endif
+strtol(const char *nptr, char **endptr, int base)
 {
 	if(nptr == NULL)
 		goto noconv;
@@ -38,7 +47,7 @@ long int strtol(const char *nptr, char **endptr, int base)
 			base = 10;
 	}
 
-
+	//used for check overflow
 	unsigned long int cutoff = ULONG_MAX / (unsigned long int)base;
 	unsigned long int cutlim = ULONG_MAX % (unsigned long int)base;
 
@@ -62,6 +71,8 @@ long int strtol(const char *nptr, char **endptr, int base)
 		//check for overflow
 		if(result > cutoff || (result == cutoff && c > cutlim) )
 		{
+			//result *= (unsigned long int)base <=  result > cutoff
+			//result == cutoff && c > cutlim    <=  result += c;
 			overflow = 1;
 			break;
 		}
