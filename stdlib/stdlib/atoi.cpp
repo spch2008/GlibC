@@ -64,3 +64,9 @@ int atoi(const char *nptr)
 noconv:
 	return 0;
 }
+
+/*
+  注意：
+  在for循环内部不进行溢出检测，可能导致溢出，然后溢出后数字
+  正好处于不溢出的范围内
+*/
