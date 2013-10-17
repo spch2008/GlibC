@@ -18,10 +18,10 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="stdlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,10 +38,16 @@
     <ClCompile Include="strtod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="strtoul.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="strtol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="strtoul.cpp">
+    <ClCompile Include="atol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="atof.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

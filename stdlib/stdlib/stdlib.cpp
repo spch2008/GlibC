@@ -1,13 +1,14 @@
 // stdlib.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <iostream>
+#include "stdlib.h"
 using namespace std;
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
-	cout << strtoul("887766543", NULL, 0) << endl;
+	cout << atof("887766543") << endl;
 
 	system("pause");
 	return 0;

@@ -1,4 +1,4 @@
-
+/*
 #include <cctype>
 const int INT_MIN = -2147483648;
 const int INT_MAX = 2147483647;
@@ -64,9 +64,15 @@ int atoi(const char *nptr)
 noconv:
 	return 0;
 }
-
+*/
 /*
   注意：
   在for循环内部不进行溢出检测，可能导致溢出，然后溢出后数字
   正好处于不溢出的范围内
 */
+
+#include "stdlib.h"
+int atoi(const char *nptr)
+{
+	return strtol(nptr, 0, 10);
+}

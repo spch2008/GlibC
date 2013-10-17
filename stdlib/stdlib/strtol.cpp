@@ -1,7 +1,6 @@
+#include "stdlib.h"
 #include <cctype>
 #include <climits>
-#define NULL 0
-
 #ifndef UNSIGNED
 #define UNSIGNED 0
 #endif
