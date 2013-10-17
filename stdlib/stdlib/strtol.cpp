@@ -63,7 +63,7 @@ long int strtol(const char *nptr, char **endptr, int base)
 		if(result > cutoff || (result == cutoff && c > cutlim) )
 		{
 			overflow = 1;
-//			break;
+			break;
 		}
 		else
 		{
