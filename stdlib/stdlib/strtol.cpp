@@ -55,12 +55,12 @@ strtol(const char *nptr, char **endptr, int base)
 	const char *save = s;
 	int overflow     = 0;
 	unsigned long int result = 0;
-	for(char c = *s; c != '\0';  c = *++s)
+	for(unsigned char c = *s; c != '\0';  c = *++s)
 	{
 		if( isdigit(c) )
 			c -= '0';
 		else if( isalpha(c) )
-			c = toupper('c') - 'A' + 10;
+			c = toupper(c) - 'A' + 10;
 		else
 			break;
 
@@ -93,7 +93,7 @@ strtol(const char *nptr, char **endptr, int base)
   /* Check for a value that is within the range of
      `unsigned long int', but outside the range of `long int'.  */
   if (result > (sign == -1 ?
-	   -(unsigned long int) LONG_MIN : (unsigned long int) LONG_MAX))
+	   (unsigned long int) - LONG_MIN : (unsigned long int) LONG_MAX))
     overflow = 1;
 #endif
 
@@ -115,3 +115,8 @@ noconv:
     *endptr = (char *) nptr;
   return 0L;
 }
+
+/*
+  细节：
+  1. base = 0时候，由程序来推测真实的进制
+  */

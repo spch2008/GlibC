@@ -38,5 +38,11 @@
     <ClCompile Include="strtod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="strtol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strtoul.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

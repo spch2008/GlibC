@@ -7,7 +7,7 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	cout << strtod("-334.78", NULL) << endl;
+	cout << strtoul("887766543", NULL, 0) << endl;
 
 	system("pause");
 	return 0;

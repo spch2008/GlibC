@@ -85,6 +85,8 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="stdlib.cpp" />
     <ClCompile Include="strtod.cpp" />
+    <ClCompile Include="strtol.cpp" />
+    <ClCompile Include="strtoul.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
