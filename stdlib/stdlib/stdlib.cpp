@@ -3,6 +3,7 @@
 
 //#include "stdafx.h"
 #include <iostream>
+#include <malloc.h>
 #include "stdlib.h"
 using std::cout;
 using std::endl;
@@ -19,6 +20,9 @@ int main(int argc, char* argv[])
 	int *ptr = (int*)bsearch(&key, arr, sizeof(arr)/sizeof(int), sizeof(int), compare);
 
 	cout << *ptr << endl;
+
+	int *p = (int*)alloca(102400000);
+	cout << p << endl;
 
 	system("pause");
 	return 0;
