@@ -15,14 +15,7 @@ int compare(const void *key, const void *elem)
 
 int main(int argc, char* argv[])
 {
-	int arr[] = {1,2,3,5,8,12,15,23,45,78};
-	int key = 15;
-	int *ptr = (int*)bsearch(&key, arr, sizeof(arr)/sizeof(int), sizeof(int), compare);
-
-	cout << *ptr << endl;
-
-	int *p = (int*)alloca(102400000);
-	cout << p << endl;
+	cout << sizeof(unsigned long int) << endl;
 
 	system("pause");
 	return 0;

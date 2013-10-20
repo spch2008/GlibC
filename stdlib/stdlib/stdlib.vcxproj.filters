@@ -53,5 +53,8 @@
     <ClCompile Include="bsearch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="msort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

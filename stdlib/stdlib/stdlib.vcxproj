@@ -85,6 +85,7 @@
     <ClCompile Include="atoi.cpp" />
     <ClCompile Include="atol.cpp" />
     <ClCompile Include="bsearch.cpp" />
+    <ClCompile Include="msort.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="stdlib.cpp" />
     <ClCompile Include="strtod.cpp" />
