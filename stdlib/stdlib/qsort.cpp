@@ -2,12 +2,13 @@
 #include <malloc.h>  //alloca
 #include <string.h>  //memcpy
 
+
 #define MAX_THRESH 4
 #define CHAR_BIT 8
 #define STACK_SIZE CHAR_BIT * sizeof(size_t)
 
 #define SWAP(a, b, size)					 \
-  do									      \
+    do									      \
     {									      \
       register size_t __size = (size);					      \
       register char *__a = (a), *__b = (b);				      \
@@ -19,6 +20,8 @@
 	  } while (--__size > 0);						      \
      } while (0)
 
+
+#define min(a, b) ( (a) > (b) ? (b) : (a) )
 
 // define stack
 struct stack_node
@@ -40,9 +43,9 @@ void quicksort(const void *base, size_t total_num, size_t size,
 	char *pivot_buffer = (char*)alloca(size);
 	char *pbase        = (char*)base;
 
-	//const size_t max_thresh = MAX_THRESH * size;
-	const size_t max_thresh = 1;
-	if(total_num > max_thresh) 
+
+	const size_t max_thresh = MAX_THRESH * size; 
+	if(total_num > MAX_THRESH) 
 	{
 		stack_node stack[STACK_SIZE];
 		stack_node *top = stack + 1;
@@ -56,6 +59,7 @@ void quicksort(const void *base, size_t total_num, size_t size,
 			char *right_ptr = hi;
 			char *mid_ptr   = lo +  size * ( (hi - lo) / size >> 1);
 
+			//find the pivot, using three median value
 			char *pivot = pivot_buffer;
 			if( compare(mid_ptr, left_ptr) < 0)
 				SWAP(left_ptr, mid_ptr, size);
@@ -69,6 +73,8 @@ void quicksort(const void *base, size_t total_num, size_t size,
             jump_over:;
 			memcpy(pivot, mid_ptr, size);
 
+			//the elems left_ptr and right_ptr point to are sorted（left middle right）
+			//so we omit them to speed up
 			left_ptr  += size;
 			right_ptr -= size;
 
@@ -81,6 +87,7 @@ void quicksort(const void *base, size_t total_num, size_t size,
 
 				if(left_ptr == right_ptr)
 				{
+					// += size prepare for below sort env
 					left_ptr  += size;
 					right_ptr -= size;
 					break;
@@ -116,8 +123,47 @@ void quicksort(const void *base, size_t total_num, size_t size,
 			}
 		}
 	}
-}
 
+    
+	char *end_ptr    = &pbase[ size * (total_num - 1) ];
+	//because maybe the length of the array is less than maxthresh
+	char *thresh_ptr = min(end_ptr, pbase + max_thresh); 
+
+	/* set up a sentinel to speed the inner loop */
+	char *tmp_ptr = pbase;
+	char *run_ptr = pbase;
+	for(run_ptr += size; run_ptr <= thresh_ptr; run_ptr += size)
+		if( (*compare)(run_ptr, tmp_ptr) < 0 )
+			tmp_ptr = run_ptr;
+	if(tmp_ptr != pbase)
+		SWAP(pbase, tmp_ptr, size);
+
+	//insert sort
+	run_ptr = pbase;
+	while( (run_ptr+=size) <= end_ptr)
+	{
+		//find insert position
+		tmp_ptr = run_ptr - size;
+		while( (*compare)(run_ptr, tmp_ptr) < 0 )
+			tmp_ptr -= size;
+		tmp_ptr += size;
+
+		if(tmp_ptr != run_ptr)
+		{
+			char *trav = run_ptr + size;
+			while(--trav >= run_ptr)
+			{
+				char c = *trav;
+                char *hi, *lo;
+
+                for (hi = lo = trav; (lo -= size) >= tmp_ptr; hi = lo)
+					*hi = *lo;
+                *hi = c;
+			}
+		}
+	}
+}
+			
 
 /*
  1. 如果切分区间总在中间，则需要logN次， N为数据总量
@@ -126,4 +172,11 @@ void quicksort(const void *base, size_t total_num, size_t size,
  2. 在区间足够小的时候，采用插入排序。最左端的小区间肯定包含
     整个数组的最小值--快排切分原理
  3. 该实现中，插入排序采用了按字节拷贝
+ 4. 思想：模拟栈，将一部分压入栈，另一部分进行处理，处理小块区域，
+          大块区域压入栈中
+ 5. MAX_THRESH以元素整体处理的时候使用，而max_thresh乘上了元素大小size，
+    当指针以字节计算的时候使用
+ 6. 所需知识：插入排序，快速排序，栈思想
+ 7. do {} while(0) 编译器会自动优化，将内部元素作为一个整体,while(0)后无分号
+    http://blog.csdn.net/chenhu_doc/article/details/856468
 */

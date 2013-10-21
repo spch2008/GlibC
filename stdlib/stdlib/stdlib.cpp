@@ -15,7 +15,7 @@ int compare(const void *key, const void *elem)
 
 int main(int argc, char* argv[])
 {
-	int arr[] = {6,2,4,9, 8,5 };//,34,23,45,11,98,56,30,12,3454,678,234,120,898,345,123};
+	int arr[] = {6,2,4,9, 8,5 ,34,23,45,11,98,56,30,12,3454,678,234,120,898,345,123};
 	quicksort(arr, sizeof(arr) / sizeof(int), sizeof(int), compare);
 
 	for(int i = 0; i < sizeof(arr) / sizeof(int); i++)
