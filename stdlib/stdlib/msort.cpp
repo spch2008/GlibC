@@ -64,3 +64,8 @@ void qsort(void *base, size_t total_num, size_t size,
 		}
 	}
 }
+
+/*
+  注意：
+  使用_quicksort时，需要extern声明
+*/
