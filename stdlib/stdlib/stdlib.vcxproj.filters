@@ -56,5 +56,8 @@
     <ClCompile Include="msort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="qsort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
