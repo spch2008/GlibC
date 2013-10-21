@@ -34,7 +34,7 @@ struct stack_node
 #define STACK_NOT_EMPTY (stack < top)
 
 
-void quicksort(const void *base, size_t total_num, size_t size, 
+void _quicksort(void *base, size_t total_num, size_t size, 
 	           int (*compare)(const void *, const void *) )
 {
 	if(total_num == 0)

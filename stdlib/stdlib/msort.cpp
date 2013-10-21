@@ -1,5 +1,7 @@
 #include "stdlib.h"
 #include <cstring>
+#include <malloc.h>
+
 
 
 void msort_with_tmp(void *base, size_t num, size_t size,
@@ -39,3 +41,26 @@ void msort_with_tmp(void *base, size_t num, size_t size,
 	memcpy(base, t, (num - num2) * size);
 }
 
+void qsort(void *base, size_t total_num, size_t size, 
+	       int (*cmp)(const void *, const void *))
+{
+	size_t total_size = size * total_num;
+	if(total_size < 1024)
+	{
+		msort_with_tmp(base, total_num, size, cmp, (char*)alloca(total_size) );
+	}
+	else
+	{
+		char *tmp = (char*)malloc(size);
+		if(tmp == NULL)
+		{
+			extern void _quicksort(void *base, size_t total_num, size_t size, int (*compare)(const void *, const void *) );
+			_quicksort(base, total_num, size, cmp);
+		}
+		else
+		{
+			msort_with_tmp(base, total_num, size, cmp, tmp );
+			free( tmp );
+		}
+	}
+}
