@@ -1,22 +1,18 @@
 // string.cpp : Defines the entry point for the console application.
 //
-
-#include <iostream>
 #include "string.h"
-using std::cout;
-using std::endl;
+#include <stdio.h>
 
 
 int main(int argc, char* argv[])
 {
-	char one[100] = "abcd";
-	cout << one << endl;
+	char *str1 = "abc";
+	char *str2 = "abc";
 
-	char *two = "efghigklmnopqrst";
-	strcat(one, two);
-	cout << one << endl;
+    int result = strcmp(str1, str2);
+	printf("%d\n", result);
+	getchar();
 
-	system("pause");
 	return 0;
 }
 
