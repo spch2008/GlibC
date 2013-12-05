@@ -27,6 +27,9 @@
     <ClCompile Include="strcmp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="strcpy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="string.h">
